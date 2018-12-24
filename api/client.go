@@ -21,9 +21,18 @@ import (
 	"time"
 
 	"github.com/cloudflare/cfssl/csr"
-	"github.com/hyperledger/fabric-ca/util"
+	"github.com/chengfangang/fabric-ca-gm/util"
 )
 
+type QuerymentRespone struct {
+	Name			string `json:"id"`
+	Pass			string `json:"token"`
+	Type			string `json:"type"`
+	Affiliation		string `json:"affiliation"`
+	Attributes		string `json:"attributes"`
+	State			int	   `json:"state"`
+    MaxEnrollments  int    `json:"max_enrollments"`
+}
 // RegistrationRequest for a new identity
 type RegistrationRequest struct {
 	// Name is the unique name of the identity
@@ -358,4 +367,8 @@ func (ar *AttributeRequest) IsRequired() bool {
 func NewBasicKeyRequest() *BasicKeyRequest {
 	bkr := csr.NewBasicKeyRequest()
 	return &BasicKeyRequest{Algo: bkr.A, Size: bkr.S}
+}
+
+func NewGMKeyRequest() *BasicKeyRequest {
+	return &BasicKeyRequest{Algo: "gmsm2", Size: 256}
 }

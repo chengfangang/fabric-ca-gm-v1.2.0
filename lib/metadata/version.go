@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hyperledger/fabric-ca/lib/dbutil"
+	"github.com/chengfangang/fabric-ca-gm/lib/dbutil"
 	"github.com/pkg/errors"
 )
 
@@ -55,7 +55,8 @@ func GetVersionInfo(prgName string) string {
 // GetVersion returns the version
 func GetVersion() string {
 	if Version == "" {
-		panic("Version is not set for fabric-ca library")
+		Version = "1.1.0"
+		//panic("Version is not set for fabric-ca library")
 	}
 	return Version
 }
